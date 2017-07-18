@@ -15,10 +15,9 @@
   "license": "nope",
   "dependencies": {
     "express": "^4.13.3",
-	"request": "^2.81.0"
+    "node-fetch": "^1.7.1",
+    "request": "^2.81.0"
   },
   "engines": {},
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }

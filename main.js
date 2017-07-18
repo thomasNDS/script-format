@@ -1,6 +1,7 @@
 var express = require('express')
 var request = require('request');
 var http = require('http');
+var fetch = require('node-fetch');
 
 var version = "0.2"
 var app = express()
@@ -19,24 +20,30 @@ app.get('/lbl/import', function(req, res) {
 	
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=ACCREDITED_PERSONS"
 	console.error('IMPORT START'); 
+	
+fetch(url)
+    .then(function(res) {
+        return res.text();
+    }).then(function(body) {
+        console.log(body);
+    });
 
-
-	http.get(url, function(resp){
+//	http.get(url, function(resp){
 		
-      var str = ""
+   //   var str = ""
 	  
-	  resp.on('data', function(chunk){
-		console.error(chunk)
-		str += chunk;
-	  });// end ON
+	//  resp.on('data', function(chunk){
+	//	console.error(chunk)
+	//	str += chunk;
+	//  });// end ON
 
 	  //the whole response has been recieved, so we just print it out here
-	  resp.on('end', function () {
-		console.error('END ! ' + str)
-		res.send('END ! ' + str)
-	  });// end ON
+	//  resp.on('end', function () {
+	//	console.error('END ! ' + str)
+	//	res.send('END ! ' + str)
+	//  });// end ON
 	  
-	})// end GET svr
+//	})// end GET svr
 
 		
 }) // end GET client
