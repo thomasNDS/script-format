@@ -1,0 +1,19 @@
+{
+  "name": "node-script",
+  "version": "0.0.0",
+  "description": "This example is so cool.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "jane-doe",
+  "license": "nope",
+  "dependencies": {
+  },
+  "engines": {
+  }
+}
