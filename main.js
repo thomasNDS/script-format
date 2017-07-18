@@ -21,12 +21,19 @@ app.get('/lbl/import', function(req, res) {
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
 	
+	var dateCompare = new Date()
+  dateCompare.setDate(1);
+  dateCompare.setMonth(dateCompare.getMonth()-1);
+  
 fetch(url)
     .then(function(res) {
         return res.text();
     }).then(function(body) {
         console.log("body.length : " +body.length);
-		res.send('END ! ')
+		res.send(body.split('<interestRepresentative>')
+					 .slice(1)
+					 .map(x => x.replace("</interestRepresentative>", ""))
+					 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) > dateCompare))
     });
 
 
