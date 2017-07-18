@@ -26,6 +26,7 @@ fetch(url)
         return res.text();
     }).then(function(body) {
         console.log(body);
+		res.send('END ! ' + body)
     });
 
 //	http.get(url, function(resp){
