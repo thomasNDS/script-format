@@ -14,8 +14,11 @@
   "author": "jane-doe",
   "license": "nope",
   "dependencies": {
-   "express": "^4.13.3"
+    "express": "^4.13.3",
+	"request": "^2.81.0"
   },
-  "engines": {
+  "engines": {},
+  "devDependencies": {
+
   }
 }
