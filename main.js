@@ -2,6 +2,7 @@ var express = require('express')
 var request = require('request');
 var http = require('http');
 var fetch = require('node-fetch');
+var parseString = require('xml2js').parseString;
 
 var version = "0.2"
 var app = express()
@@ -32,9 +33,9 @@ fetch(url)
 		res.send(body.split('<interestRepresentative>')
 					 .slice(1)
 					 .map(x => x.replace("</interestRepresentative>", ""))
-					 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) > dateCompare))
+					 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare))
+					 .map(x => parseString(xml))
     });
-
 
 		
 }) // end GET client
