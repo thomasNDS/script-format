@@ -1,8 +1,6 @@
 var express = require('express')
-var request = require('request');
-var http = require('http');
-var fetch = require('node-fetch');
-var parseString = require('xml2js').parseString;
+var fetch = require('node-fetch')
+var parse = require('xml-parser')
 
 var version = "0.2"
 var app = express()
@@ -33,7 +31,7 @@ fetch(url).then(function(res) {
 								 .slice(1)
 								 .map(x => x.replace("</interestRepresentative>", ""))
 								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
-								 .map(function(xml) { parseString(xml, function (err, result) { return result }) })
+								 .map(function(xml) { parse(xml) })
 				
 				res.send(filteredRes)		 
 			});
