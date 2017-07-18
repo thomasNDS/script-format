@@ -2,7 +2,7 @@ var express = require('express')
 var request = require('request');
 var http = require('http');
 
-var version = "0.1"
+var version = "0.2"
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -33,7 +33,7 @@ app.get('/lbl/import', function(req, res) {
 	  //the whole response has been recieved, so we just print it out here
 	  resp.on('end', function () {
 		console.error('END ! ' + str)
-		response.send('END ! ' + str)
+		res.send('END ! ' + str)
 	  });// end ON
 	  
 	})// end GET svr
