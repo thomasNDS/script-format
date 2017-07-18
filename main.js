@@ -15,15 +15,14 @@ app.get('/', function(req, response) {
 })
 
 /** */
-app.get('/lbl/import', function(req, res) {
+app.get('/lbl/import/:nbdays', function(req, res) {
 	req.setTimeout(0) // no timeout
 	
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
 	
 	var dateCompare = new Date()
-  dateCompare.setDate(1);
-  dateCompare.setMonth(dateCompare.getMonth()-1);
+	dateCompare.setDate(dateCompare.getDate()- req.params.nbdays);
   
 fetch(url)
     .then(function(res) {
