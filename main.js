@@ -33,7 +33,7 @@ var options = {
   port: 80
 };
 
-	http.get(options, function(resp){
+	http.get(url, function(resp){
 	  resp.on('data', function(chunk){
 		//do something with chunk
 		console.error(chunk)
