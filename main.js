@@ -13,7 +13,7 @@ app.get('/', function(req, response) {
 })
 
 /** */
-app.get('/lbl/import', function(req, response) {
+app.get('/lbl/import', function(req, res) {
 
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
@@ -22,7 +22,7 @@ app.get('/lbl/import', function(req, response) {
 	  console.error('error:', error); 
 	  console.log('statusCode:', response && response.statusCode); 
 	  console.log('body:', body); 
-	  response.send('error:' + error + 'statusCode:' + response && response.statusCode + 'body:'+ body)
+	  res.send('error:' + error + 'statusCode:' + response && response.statusCode + 'body:'+ body)
 	});	
 		
 })
