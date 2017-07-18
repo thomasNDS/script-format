@@ -15,7 +15,8 @@ app.get('/', function(req, response) {
 
 /** */
 app.get('/lbl/import', function(req, res) {
-
+	req.setTimeout(0) // no timeout
+	
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
 	
@@ -36,7 +37,8 @@ var options = {
 	http.get(url, function(resp){
 	  resp.on('data', function(chunk){
 		//do something with chunk
-		console.error(chunk)
+		console.error("chunk :")
+		  console.error(chunk)
 	  });
 	}).on("error", function(e){
 	  console.error("Got error: " + e.message);
