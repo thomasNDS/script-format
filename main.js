@@ -18,33 +18,17 @@ app.get('/', function(req, response) {
 app.get('/lbl/import', function(req, res) {
 	req.setTimeout(0) // no timeout
 	
-	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=ACCREDITED_PERSONS"
+	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
 	
 fetch(url)
     .then(function(res) {
         return res.text();
     }).then(function(body) {
-        console.log(body);
+        console.log("body.length : " +body.length);
 		res.send('END ! ' + body)
     });
 
-//	http.get(url, function(resp){
-		
-   //   var str = ""
-	  
-	//  resp.on('data', function(chunk){
-	//	console.error(chunk)
-	//	str += chunk;
-	//  });// end ON
-
-	  //the whole response has been recieved, so we just print it out here
-	//  resp.on('end', function () {
-	//	console.error('END ! ' + str)
-	//	res.send('END ! ' + str)
-	//  });// end ON
-	  
-//	})// end GET svr
 
 		
 }) // end GET client
