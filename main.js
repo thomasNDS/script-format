@@ -31,7 +31,7 @@ fetch(url).then(function(res) {
 								 .slice(1)
 								 .map(x => x.replace("</interestRepresentative>", ""))
 								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
-								 .map(function(xml) { parse("<root>" + xml + "</root>") })
+								 .map(xml => parse("<root>" + xml + "</root>") )
 				
 				res.send(filteredRes)		 
 			});
@@ -43,3 +43,5 @@ fetch(url).then(function(res) {
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
+
+// git add . & git commit -m " a" & git push
