@@ -16,11 +16,12 @@ app.get('/', function(req, response) {
 app.get('/lbl/import', function(req, response) {
 
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
-		
+	console.error('IMPORT START'); 
+	
 	request(url, function (error, response, body) {
-	  console.error('error:', error); // Print the error if one occurred 
-	  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-	  console.log('body:', body); // Print the HTML for the Google homepage. 
+	  console.error('error:', error); 
+	  console.log('statusCode:', response && response.statusCode); 
+	  console.log('body:', body); 
 	  response.send('error:' + error + 'statusCode:' + response && response.statusCode + 'body:'+ body)
 	});	
 		
