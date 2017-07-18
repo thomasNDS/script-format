@@ -18,35 +18,26 @@ app.get('/lbl/import', function(req, res) {
 
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
-	
-	//request(url, function (error, response, body) {
-	  //console.error('error:', error); 
-	//  console.log('statusCode:', response && response.statusCode); 
-	 // console.log('body:', body); 
-	 // res.send('error:' + error + 'statusCode:' + response && response.statusCode + 'body:'+ body)
-//	});	
-	
-
-
-var options = {
-  host: url,
-  port: 80
-};
 
 	http.get(options, function(resp){
+		
+      var str = ""
+	  
 	  resp.on('data', function(chunk){
-		//do something with chunk
 		console.error(chunk)
+		str += chunk;
+	  });// end GET ON
+
+	  //the whole response has been recieved, so we just print it out here
+	  resp.on('end', function () {
+		console.error('END ! ' + str)
+		response.send('END ! ' + str)
 	  });
-	}).on("error", function(e){
-	  console.error("Got error: " + e.message);
-	  res.send("Got error: " + e.message)
-	}).on("end", function(){
-	  console.error("END: ");
-	});	
+	  
+	})// end GET svr
 
 		
-})
+}) // end GET client
 
 /** */
 app.listen(app.get('port'), function() {
