@@ -29,11 +29,13 @@ fetch(url).then(function(res) {
 			return res.text();
 		}).then(function(body) {
 			console.log("body.length : " +body.length);
-			res.send(body.split('<interestRepresentative>')
-						 .slice(1)
-						 .map(x => x.replace("</interestRepresentative>", ""))
-						 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare))
-						 .map(function(xml) { parseString(xml, function (err, result) { return result }) })
+			var filteredRes = body.split('<interestRepresentative>')
+								 .slice(1)
+								 .map(x => x.replace("</interestRepresentative>", ""))
+								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
+								 .map(function(xml) { parseString(xml, function (err, result) { return result }) })
+				
+				res.send(filteredRes)		 
 			});
 
 		
