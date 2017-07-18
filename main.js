@@ -17,7 +17,7 @@ app.get('/', function(req, response) {
 app.get('/lbl/import', function(req, res) {
 	req.setTimeout(0) // no timeout
 	
-	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
+	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=ACCREDITED_PERSONS"
 	console.error('IMPORT START'); 
 
 
