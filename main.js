@@ -1,5 +1,6 @@
 var express = require('express')
 var request = require('request');
+var http = require('http');
 
 var version = "0.1"
 var app = express()
@@ -18,12 +19,32 @@ app.get('/lbl/import', function(req, res) {
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
 	
-	request(url, function (error, response, body) {
-	  console.error('error:', error); 
-	  console.log('statusCode:', response && response.statusCode); 
-	  console.log('body:', body); 
-	  res.send('error:' + error + 'statusCode:' + response && response.statusCode + 'body:'+ body)
+	//request(url, function (error, response, body) {
+	  //console.error('error:', error); 
+	//  console.log('statusCode:', response && response.statusCode); 
+	 // console.log('body:', body); 
+	 // res.send('error:' + error + 'statusCode:' + response && response.statusCode + 'body:'+ body)
+//	});	
+	
+
+
+var options = {
+  host: url,
+  port: 80
+};
+
+	http.get(options, function(resp){
+	  resp.on('data', function(chunk){
+		//do something with chunk
+		console.error(chunk)
+	  });
+	}).on("error", function(e){
+	  console.error("Got error: " + e.message);
+	  res.send("Got error: " + e.message)
+	}).on("end", function(){
+	  console.error("END: ");
 	});	
+
 		
 })
 
