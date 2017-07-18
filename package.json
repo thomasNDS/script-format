@@ -13,6 +13,7 @@
   "author": "jane-doe",
   "license": "nope",
   "dependencies": {
+   "express": "^4.13.3"
   },
   "engines": {
   }
