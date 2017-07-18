@@ -18,7 +18,7 @@ app.get('/lbl/import', function(req, response) {
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 		
 	request(url, function (error, response, body) {
-	  console.log('error:', error); // Print the error if one occurred 
+	  console.error('error:', error); // Print the error if one occurred 
 	  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
 	  console.log('body:', body); // Print the HTML for the Google homepage. 
 	  response.send('error:' + error + 'statusCode:' + response && response.statusCode + 'body:'+ body)
