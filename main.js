@@ -15,24 +15,26 @@ app.get('/', function(req, response) {
 
 /** */
 app.get('/lbl/import', function(req, res) {
-
+	req.setTimeout(0) // no timeout
+	
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
 	console.error('IMPORT START'); 
 
-	http.get(options, function(resp){
+
+	http.get(url, function(resp){
 		
       var str = ""
 	  
 	  resp.on('data', function(chunk){
 		console.error(chunk)
 		str += chunk;
-	  });// end GET ON
+	  });// end ON
 
 	  //the whole response has been recieved, so we just print it out here
 	  resp.on('end', function () {
 		console.error('END ! ' + str)
 		response.send('END ! ' + str)
-	  });
+	  });// end ON
 	  
 	})// end GET svr
 
