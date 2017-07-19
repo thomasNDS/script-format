@@ -44,13 +44,13 @@ function deleteAttributes(root) {
 		delete root.attributes
 		if (root.children) {
 			if (root.children.length == 0) {
-				delete root.children
+				//delete root.children
 			} else {
 				root.children = root.children.map(x => deleteAttributes(x))
 			}
 		}
-		return root;
 	}
+	return root;
 }
 
 /** */
