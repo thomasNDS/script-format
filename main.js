@@ -42,10 +42,12 @@ fetch(url).then(function(res) {
 function deleteAttributes(root) {
 	if (root) {
 		delete root.attributes
-		if (root.children == []) {
-			delete root.children
-		} else if (root.children) {
-			root.children = root.children.map(x => deleteAttributes(x))
+		if (root.children) {
+			if (root.children.length == 0) {
+				delete root.children
+			} else {
+				root.children = root.children.map(x => deleteAttributes(x))
+			}
 		}
 		return root;
 	}
