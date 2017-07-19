@@ -32,12 +32,23 @@ fetch(url).then(function(res) {
 								 .map(x => x.replace("</interestRepresentative>", ""))
 								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
 								 .map(xml => parse("<root>" + xml + "</root>") )
-								 
+				deleteAttributes(filteredRes) 				 
 				res.send(filteredRes )		 
 			});
 
 		
 }) // end GET client
+
+function deleteAttributes(root) {
+	if (root) {
+		delete root.attributes
+		if (root.children == []) {
+			delete root.children
+		} else {
+			root.children = root.children.map(x => deleteAttributes(x))
+		}
+	}
+}
 
 /** */
 app.listen(app.get('port'), function() {
