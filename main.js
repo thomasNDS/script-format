@@ -32,7 +32,7 @@ fetch(url).then(function(res) {
 								 .map(x => x.replace("</interestRepresentative>", ""))
 								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
 								 .map(xml => parse("<root>" + xml + "</root>") )
-				deleteAttributes(filteredRes) 				 
+				filteredRes = deleteAttributes(filteredRes) 				 
 				res.send(filteredRes )		 
 			});
 
@@ -47,6 +47,7 @@ function deleteAttributes(root) {
 		} else if (root.children) {
 			root.children = root.children.map(x => deleteAttributes(x))
 		}
+		return root;
 	}
 }
 
