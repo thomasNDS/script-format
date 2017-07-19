@@ -31,9 +31,9 @@ fetch(url).then(function(res) {
 								 .slice(1)
 								 .map(x => x.replace("</interestRepresentative>", ""))
 								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
-								 .map(xml => '<r>' + parse(xml) + '</r>' )
+								 .map(xml => parse('<r>' +xml + '</r>'))
 						 
-				res.send(filteredRes )		 
+				res.send(filteredRes.map(x=> deleteAttributes(x)))		 
 			});
 
 		
