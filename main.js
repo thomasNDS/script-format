@@ -18,7 +18,7 @@ app.get('/lbl/import/:nbdays', function(req, res) {
 	req.setTimeout(0) // no timeout
 	
 	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
-	console.error('IMPORT START'); 
+	console.log('IMPORT START'); 
 	
 	var dateCompare = new Date()
 	dateCompare.setDate(dateCompare.getDate()- req.params.nbdays);
@@ -31,9 +31,9 @@ fetch(url).then(function(res) {
 								 .slice(1)
 								 .map(x => x.replace("</interestRepresentative>", ""))
 								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
-								 .map(xml => parse("<root>" + xml + "</root>") )
-				filteredRes = deleteAttributes(filteredRes.root) 				 
-				res.send(filteredRes )		 
+								 .map(xml => parse("<r>" + xml + "</r>") )
+				filteredRes = filteredRes.map(x=> deleteAttributes(x.r)) 				 
+				res.send(filteredRes)		 
 			});
 
 		
