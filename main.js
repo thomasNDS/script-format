@@ -124,7 +124,7 @@ function buildCoherentElt(elt) {
   res.id = elt.identificationCode?elt.identificationCode.content:""
   res.name = elt.name.originalName?elt.name.originalName.content:""
   res.registrationDate = elt.registrationDate?elt.registrationDate.content:""
-  //res.category = romanValue(elt.category.mainCategory.content.split("-")[0].replace(" ",""))
+  res.category = romanValue(elt.category.mainCategory.content.split("-")[0].replace(" ",""))
   res.subCategory = elt.category.subCategory.content
   res.legal = elt.legalStatus?elt.legalStatus.content:""
   res.web = elt.webSiteURL?elt.webSiteURL.attributes['ns2:href']:""
@@ -132,7 +132,7 @@ function buildCoherentElt(elt) {
   res.headAddress = elt.contactDetails.addressline1?elt.contactDetails.addressline1.content:""
   res.headCity = elt.contactDetails.town?elt.contactDetails.town.content:""
   res.headPostCode = elt.contactDetails.postCode?elt.contactDetails.postCode.content:""
-  res.headPhone = elt.contactDetails.phone ?formatNumberPhone(elt.contactDetails.phone.content):""
+  //res.headPhone = elt.contactDetails.phone ?formatNumberPhone(elt.contactDetails.phone.content):""
   res.boss = elt.legalResp.firstName?elt.legalResp.firstName.content + ' ' + elt.legalResp.lastName.content:""
   res.bossTitle = elt.legalResp.title?elt.legalResp.title.content:""
   res.bossPosition = elt.legalResp.position?elt.legalResp.position.content:""
@@ -140,7 +140,7 @@ function buildCoherentElt(elt) {
   res.membersFTE = elt.members.membersFTE?elt.members.membersFTE.content:""
   res.membership =  elt.structure.networking?elt.structure.networking.content:""
   res.memberOrga =  elt.structure.structureMembers?elt.structure.structureMembers.content:""
-  //res.goal = elt.goal?elt.goal.content.replace(/\r?\n/g, "<br />"):""
+  res.goal = elt.goal?elt.goal.content.replace(/\r?\n/g, "<br />"):""
   res.acronym = elt.acronym?elt.acronym.content:""
   res.interest = elt.interest.children.map(x => x.children[0].content).join(',')
   res.euInitiative = elt.activities.activityEuLegislative?elt.activities.activityEuLegislative.content:""
