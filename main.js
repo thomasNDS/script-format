@@ -48,9 +48,10 @@ function deleteAttributes(root) {
 	if (root) {
 		//delete root.attributes
 		if (root.children && root.name) {
-			root.children = root.children.map(x => deleteAttributes(x))
-			root.children.map(function(x) {root[x.name] = x; return x})
-			if(x.name !=='interests' && x.name !=='customers') {
+			if(root.name !=='interests' && root.name !=='customers') {
+				
+				root.children = root.children.map(x => deleteAttributes(x))
+				root.children.map(function(x) {root[x.name] = x; return x})
 				delete root.children
 			}
 		}
