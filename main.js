@@ -142,7 +142,7 @@ function buildCoherentElt(elt) {
   res.memberOrga =  elt.structure.structureMembers?elt.structure.structureMembers.content:""
   res.goal = elt.goal?elt.goal.content.replace(/\r?\n/g, "<br />"):""
   res.acronym = elt.acronym?elt.acronym.content:""
-  res.interest = elt.interest.children.map(x => x.children[0].content).join(',')
+  res.interest = elt.interest && elt.interest.children?elt.interest.children.map(x => x.children[0].content).join(','):""
   res.euInitiative = elt.activities.activityEuLegislative?elt.activities.activityEuLegislative.content:""
   
   
