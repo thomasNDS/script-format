@@ -31,7 +31,6 @@ fetch(url).then(function(res) {
 			console.log("body.length : " +body.length);
 			var filteredRes = body.split('<interestRepresentative>')
 								  .slice(1)
-								  .join('')
 								  .map(x => x.replace("</interestRepresentative>", ""))
 								  .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
 								  .map(xml => parse('<r>' +xml + '</r>'))
