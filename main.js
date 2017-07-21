@@ -105,17 +105,17 @@ var trans = { M: 1E3, CM: 900, D: 500, CD: 400,  C: 100, XC: 90, L: 50, XL: 40, 
        
 /** */  
 function formatNumberPhone(x) {
-  return x[0].replace(/ /g,'')
-  .split(')')
-  .map(function(x, i) {
-    return (i == 0) ?  x + ')' 
-    : x.split('')
-    .map(function(y, idx) {
-      return (idx % 2 == x.length%2) ? y : y + " "
-    })
-    .join('')
-  }).join('')
-  .slice(0, -1);
+  return x.replace(/ /g,'')
+		  .split(')')
+		  .map(function(x, i) {
+			return (i == 0) ?  x + ')' 
+			: x.split('')
+			    .map(function(y, idx) {
+				  return (idx % 2 == x.length%2) ? y : y + " "
+				})
+			.join('')
+		  }).join('')
+		  .slice(0, -1);
 }
 
 
@@ -132,7 +132,7 @@ function buildCoherentElt(elt) {
   res.headAddress = elt.contactDetails.addressline1?elt.contactDetails.addressline1.content:""
   res.headCity = elt.contactDetails.town?elt.contactDetails.town.content:""
   res.headPostCode = elt.contactDetails.postCode?elt.contactDetails.postCode.content:""
-  //res.headPhone = elt.contactDetails.phone ?formatNumberPhone(elt.contactDetails.phone.content):""
+  res.headPhone = elt.contactDetails.phone ?formatNumberPhone(elt.contactDetails.phone.content):""
   res.boss = elt.legalResp.firstName?elt.legalResp.firstName.content + ' ' + elt.legalResp.lastName.content:""
   res.bossTitle = elt.legalResp.title?elt.legalResp.title.content:""
   res.bossPosition = elt.legalResp.position?elt.legalResp.position.content:""
