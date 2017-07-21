@@ -158,7 +158,7 @@ function buildCoherentElt(elt) {
   
   res.costAbsolu = elt.financialData.financialInformation.cost?elt.financialData.financialInformation.cost.content:0
    
-   if (elt.financialData.financialInformation.cost.range.max) {
+   if (elt.financialData.financialInformation.cost && elt.financialData.financialInformation.cost.range.max) {
      if (elt.financialData.financialInformation.cost.range.min) {
       res.costRange = Math.floor(parseInt(elt.financialData.financialInformation.cost.range.min.content,10)) + '-' + 
       Math.floor(parseInt(elt.financialData.financialInformation.cost.range.max.content),10)
@@ -170,7 +170,7 @@ function buildCoherentElt(elt) {
    }
    res.turnoverAbsolu = elt.financialData.financialInformation.turnover?elt.financialData.financialInformation.turnover.content:0
    
-   if (elt.financialData.financialInformation.turnover.range.max) {
+   if (elt.financialData.financialInformation.turnover && elt.financialData.financialInformation.turnover.range.max) {
      if (elt.financialData.financialInformation.turnover.range.min) {
       res.turnoverRange = Math.floor(parseInt(elt.financialData.financialInformation.turnover.range.min.content,10)) + '-' + 
       Math.floor(parseInt(elt.financialData.financialInformation.turnover.range.max.content),10)
