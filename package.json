@@ -16,7 +16,8 @@
   "dependencies": {
     "express": "^4.13.3",
     "node-fetch": "^1.7.1",
-    "xml-parser": "^1.2.1"
+    "xml-parser": "^1.2.1",
+    "xml2js": "^0.4.17"
   },
   "engines": {},
   "devDependencies": {}

@@ -1,9 +1,11 @@
 var express = require('express')
 var fetch = require('node-fetch')
 var parse = require('xml-parser')
+var xml2js = require('xml2js')
 
 var version = "0.2"
 var app = express()
+var parser = new xml2js.Parser();
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
@@ -27,13 +29,19 @@ fetch(url).then(function(res) {
 			return res.text();
 		}).then(function(body) {
 			console.log("body.length : " +body.length);
-			var filteredRes = body.split('<interestRepresentative>')
-								 .slice(1)
-								 .map(x => x.replace("</interestRepresentative>", ""))
-								 .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
-								 .map(xml => parse('<r>' +xml + '</r>'))
+			var filteredRes = body//.split('<interestRepresentative>')
+								// .slice(1)
+								// .join('')
+								// .map(x => x.replace("</interestRepresentative>", ""))
+								// .filter(x => new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]) >= dateCompare)
+								// .map(xml => parse('<r>' +xml + '</r>'))
 						 
-				res.send(filteredRes.map(x=> deleteAttributes(x.root)))		 
+				parser.parseString(filteredRes, function (err, result) {
+					console.error(err)
+					res.send(result)
+				});
+						 
+				//res.send(filteredRes.map(x=> deleteAttributes(x.root)))		 
 			});
 
 		
