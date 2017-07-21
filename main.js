@@ -43,14 +43,14 @@ fetch(url).then(function(res) {
 		
 }) // end GET client
 
+/** */
 function deleteAttributes(root) {
 	if (root) {
-		delete root.attributes
+		//delete root.attributes
 		if (root.children && root.name) {
 			root.children = root.children.map(x => deleteAttributes(x))
 			root.children.map(function(x) { root[x.name] = x; return x})
 			delete root.children
-			//delete root.name
 		}
 	}
 	return root;
