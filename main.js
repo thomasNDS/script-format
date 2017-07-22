@@ -143,8 +143,8 @@ function buildCoherentElt(elt) {
 	  res.memberOrga =  elt.structure.structureMembers?elt.structure.structureMembers.content:""
 	  res.goal = elt.goal?elt.goal.content.replace(/\r?\n/g, "<br />"):""
 	  res.acronym = elt.acronym?elt.acronym.content:""
-	  res.interest = (elt.interests && elt.interests.children)?elt.interests.children.map(x => x.children[0].content).join(','):""
-	  res.euInitiative = elt.activities.activityEuLegislative?elt.activities.activityEuLegislative.content:""
+	  res.interests = (elt.interests && elt.interests.children)?elt.interests.children.map(x => x.children[0].content).join(', '):""
+	  res.euInitiatives = elt.activities.activityEuLegislative?elt.activities.activityEuLegislative.content:""
 	  
 	  
 	  if (elt.financialData.financialInformation.newTurnoverBreakdown 
