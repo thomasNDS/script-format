@@ -132,7 +132,7 @@ function buildCoherentElt(elt) {
   res.headAddress = elt.contactDetails.addressline1?elt.contactDetails.addressline1.content:""
   res.headCity = elt.contactDetails.town?elt.contactDetails.town.content:""
   res.headPostCode = elt.contactDetails.postCode?elt.contactDetails.postCode.content:""
-  res.headPhone = elt.contactDetails.phone ?formatNumberPhone(elt.contactDetails.phone.content):""
+  res.headPhone = elt.contactDetails.phone ?formatNumberPhone("(" + elt.contactDetails.phone.indicPhone.content + ") " + elt.contactDetails.phone.phoneNumber.content):""
   res.boss = elt.legalResp.firstName?elt.legalResp.firstName.content + ' ' + elt.legalResp.lastName.content:""
   res.bossTitle = elt.legalResp.title?elt.legalResp.title.content:""
   res.bossPosition = elt.legalResp.position?elt.legalResp.position.content:""
@@ -140,13 +140,14 @@ function buildCoherentElt(elt) {
   res.membersFTE = elt.members.membersFTE?elt.members.membersFTE.content:""
   res.membership =  elt.structure.networking?elt.structure.networking.content:""
   res.memberOrga =  elt.structure.structureMembers?elt.structure.structureMembers.content:""
-  res.goal = elt.goal?elt.goal.content.replace(/\r?\n/g, "<br />"):""
+  res.goal = elt.goals?elt.goals.content.replace(/\r?\n/g, "<br />"):""
   res.acronym = elt.acronym?elt.acronym.content:""
   res.interest = elt.interest && elt.interest.children?elt.interest.children.map(x => x.children[0].content).join(','):""
   res.euInitiative = elt.activities.activityEuLegislative?elt.activities.activityEuLegislative.content:""
   
   
-  if (elt.financialData.financialInformation.newTurnoverBreakdown && elt.financialData.financialInformation.newTurnoverBreakdown.customersGroupsInAbsoluteRange) {
+  if (elt.financialData.financialInformation.newTurnoverBreakdown && elt.financialData.financialInformation.newTurnoverBreakdown.customersGroupsInAbsoluteRange 
+		&& elt.financialData.financialInformation.newTurnoverBreakdown.customersGroupsInAbsoluteRange.customers) {
     res.customers = elt.financialData.financialInformation.newTurnoverBreakdown.customersGroupsInAbsoluteRange.customers
     
   } else if (elt.financialData.financialInformation.turnoverBreakdown && elt.financialData.financialInformation.turnoverBreakdown.customersGroupsInAbsoluteRange) {
