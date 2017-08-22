@@ -130,7 +130,8 @@ function buildCoherentElt(elt) {
 	  res.subCategory = elt.category.subCategory.content
 	  res.legal = elt.legalStatus?elt.legalStatus.content:""
 	  res.web = elt.webSiteURL?elt.webSiteURL.attributes['ns2:href']:""
-	  res.country = elt.contactDetails.country?elt.contactDetails.country.content:""
+	  var country = elt.contactDetails.country.content
+	  res.country = country?country.charAt(0).toUpperCase() + country.slice(1).toLowerCase():""
 	  res.headAddress = elt.contactDetails.addressline1?elt.contactDetails.addressline1.content:""
 	  res.headCity = elt.contactDetails.town?elt.contactDetails.town.content:""
 	  res.headPostCode = elt.contactDetails.postCode?elt.contactDetails.postCode.content:""
