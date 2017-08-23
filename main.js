@@ -139,7 +139,7 @@ function buildCoherentElt(elt) {
 	  res.boss = elt.legalResp.firstName?elt.legalResp.firstName.content + ' ' + elt.legalResp.lastName.content:""
 	  res.bossTitle = elt.legalResp.title?elt.legalResp.title.content:""
 	  res.bossPosition = elt.legalResp.position?elt.legalResp.position.content:""
-	  res.membersCount = elt.members.members?elt.members.members.content:""
+	  res.membersCount = elt.members.members?Math.round(elt.members.members.content):""
 	  res.membersFTE = elt.members.membersFTE?elt.members.membersFTE.content:""
 	  res.membership =  elt.structure.networking?elt.structure.networking.content:""
 	  res.memberOrga =  elt.structure.structureMembers?elt.structure.structureMembers.content:""
