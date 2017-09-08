@@ -129,7 +129,7 @@ function buildCoherentElt(elt) {
 	  res.category = romanValue(elt.category.mainCategory.content.split("-")[0].replace(" ",""))
 	  
 	  var cat = ["Trade unions and professional associations", "Non-governmental organisations, platforms and networks and similar", "Companies & groups", "Trade and business associations", "Think tanks and research institutions", "Professional consultancies", "Other organisations", "Self-employed consultants", "Other public or mixed entities, created by law whose purpose is to act in the public interest", "Law firms", "Transnational associations and networks of public regional or other sub-national authorities", "Academic institutions", "Other sub-national public authorities", "Regional structures", "Organisations representing churches and religious communities"]
-	  res.subCategory = cat.indexOf(elt.category.subCategory.content.replace('&amp;', '&'))
+	  res.subCategory = cat.indexOf(elt.category.subCategory.content.replace('&amp;', '&')) +1
 	  res.legal = elt.legalStatus?elt.legalStatus.content:""
 	  res.web = elt.webSiteURL?elt.webSiteURL.attributes['ns2:href']:""
 	  var country = elt.contactDetails.country.content
