@@ -73,6 +73,37 @@ fetch(url).then(function(res) {
 }) // end GET client
 
 /** */
+app.get('/lbl/import/:start/and/:end', function(req, res) {
+	req.setTimeout(0) // no timeout
+	
+	var url= "http://ec.europa.eu/transparencyregister/public/consultation/statistics.do?action=getLobbyistsXml&fileType=NEW"
+	console.log('IMPORT START'); 
+	
+	var dateCompare = new Date()
+	dateCompare.setDate(dateCompare.getDate()- req.params.start);
+	
+	var dateEnd = new Date()
+	dateEnd.setDate(dateEnd.getDate()- req.params.end);
+  
+fetch(url).then(function(res) {
+			return res.text();
+		}).then(function(body) {
+			console.log("body.length : " +body.length);
+			var filteredRes = body.split('<interestRepresentative>')
+								  .slice(1)
+								  .map(x => x.replace("</interestRepresentative>", ""))
+								  .filter(x => {var comp = new Date(x.match(/<lastUpdateDate>(.*)<\/lastUpdateDate>/)[1]); return comp >= dateCompare && comp <= dateEnd})
+								  .map(xml => parse('<r>' +xml + '</r>'))
+						 
+
+				console.log('IMPORT END'); 
+				res.send(filteredRes.map(x=> buildCoherentElt(deleteAttributes(x.root))))		 
+			});
+
+		
+}) // end GET client
+
+/** */
 function deleteAttributes(root) {
 	if (root) {
 		//delete root.attributes
