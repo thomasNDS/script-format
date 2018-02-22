@@ -3,7 +3,7 @@ var fetch = require('node-fetch')
 var parse = require('xml-parser')
 var xml2js = require('xml2js')
 
-var version = "0.2"
+var version = "1.0"
 var app = express()
 var parser = new xml2js.Parser();
 
