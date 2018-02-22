@@ -1,6 +1,6 @@
 {
   "name": "node-script",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "This example is so cool.",
   "main": "main.js",
   "scripts": {
